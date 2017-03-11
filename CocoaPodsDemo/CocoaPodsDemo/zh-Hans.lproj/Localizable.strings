@@ -1,0 +1,51 @@
+/* 
+  Localizable.strings
+  CocoaPodsDemo
+
+  Created by  XHY on 2016/10/17.
+  Copyright © 2016年  XHY. All rights reserved.
+*/
+//常用一般性短语
+"sure" = "确定";
+"cancel" = "取消";
+"save" = "保存";
+"remove" = "移除";
+
+"device" = "设备";
+"message" = "消息";
+"mode" = "模式";
+
+/*
+ *
+ 登录模块
+ *
+ */
+"login" = "登 录";
+"logining" = "登录中";
+
+"User name cannot be empty" = "用户名不能为空！";
+"Password cannot be empty" = "密码不能为空！";
+"Account is not more than 16 bytes" = "账号不超过16个字节";
+
+/*
+ *
+ 设备模块
+ *
+ */
+"device information" = "设备信息";
+"device custom name" = "设备名称";
+"current location" = "当前位置";
+"detailed information" = "详细信息";
+"FAQ" = "常见问题";
+"remove device" = "移除设备";
+"move to" = "移动到";
+"Remove equipment instructions" = "移除设备须知";
+"Device removed, such as reuse, need to add back into the net, whether to remove?" = "设备移除后，如再使用，需重新添加入网，是否移除?";
+
+/*
+ 中心
+ */
+"Gateway management" = "网关管理";
+"Regional management" = "区域管理";
+"Linkage management" = "联动管理";
+"Log out" = "退出系统";

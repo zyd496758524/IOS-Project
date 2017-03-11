@@ -1,0 +1,53 @@
+//
+//  CocoaPodsDemo.pch
+//  CocoaPodsDemo
+//
+//  Created by  XHY on 16/8/12.
+//  Copyright © 2016年  XHY. All rights reserved.
+//
+
+#ifndef CocoaPodsDemo_pch
+#define CocoaPodsDemo_pch
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "Masonry.h"
+#import "MJRefresh.h"
+#import "SVProgressHUD.h"
+#import "CocoaLumberjack.h"
+#import "RealReachability.h"
+#import "IQKeyboardManager.h"
+#import "UIColor+JKHEX.h"
+#import "UIView+Toast.h"
+#import "NSMutableDictionary+Safe.h"
+#import "GCDAsyncUdpSocket.h"
+
+// ZigBee 协议
+#import "zigbee.h"
+//#import <UAnYan/UAnYan.h>
+
+// 总数据源
+#import "XHYDataContainer.h"
+#import "XHYMsgSendTool.h"
+
+//快速添加通知 KVO
+#import "NSObject+XWAdd.h"
+
+//常量，宏定义
+#import "XHYSmartConst.h"
+//通知命名
+#import "XHYKey.h"
+//设备类型枚举
+#import "XHYEnumeration.h"
+
+
+#ifdef DEBUG
+#define NSLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#else
+#define NSLog(FORMAT, ...) nil
+#endif
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* CocoaPodsDemo_pch */

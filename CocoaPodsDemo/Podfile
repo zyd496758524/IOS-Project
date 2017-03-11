@@ -1,0 +1,21 @@
+platform :ios, '8.0'
+use_frameworks!
+
+target 'CocoaPodsDemo' do
+    
+    pod 'XMPPFramework', :git => "https://github.com/robbiehanson/XMPPFramework.git", :branch => 'master'
+    pod 'MJRefresh','~> 3.1.12'
+    pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
+    pod 'SDWebImage','~> 4.0.0'
+    pod 'FMDB','~> 2.5'
+    pod 'Masonry','~> 1.0.2'
+    pod 'MMDrawerController','~> 0.6.0'
+    pod 'SAMKeychain','~> 1.5.2'
+    pod 'DZNEmptyDataSet','~> 1.8.1'
+    pod 'Toast','~> 3.1.0'
+    pod 'RealReachability'
+    pod 'JDStatusBarNotification','~> 1.5.5'
+    pod 'IQKeyboardManager','~> 4.0.8'
+    pod 'Bugtags'
+    pod 'PYSearch'
+end
