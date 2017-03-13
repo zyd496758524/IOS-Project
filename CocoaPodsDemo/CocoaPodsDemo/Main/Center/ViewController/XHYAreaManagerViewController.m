@@ -25,7 +25,7 @@
 
 - (UITableView *)floorListTableView{
     
-    if (!_floorListTableView) {
+    if (!_floorListTableView){
         
         _floorListTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
         _floorListTableView.dataSource = self;
