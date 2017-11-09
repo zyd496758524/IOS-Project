@@ -15,7 +15,7 @@
 #import "MJRefresh.h"
 #import "SVProgressHUD.h"
 #import "CocoaLumberjack.h"
-#import "RealReachability.h"
+//#import "RealReachability.h"
 #import "IQKeyboardManager.h"
 #import "UIColor+JKHEX.h"
 #import "UIView+Toast.h"

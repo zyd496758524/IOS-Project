@@ -64,11 +64,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RealReachability.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SAMKeychain.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -101,102 +96,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>0D83E505BF1E81A4AAA9A3A5CAA45E9E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>251BAD17812F7EBF6532EACF66F941C3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>40E4BD0ABC99F04C1850A281AF9EC471</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>416B388906DEFAC81F0676F277AC9058</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>454965E8A9A5D3E7A0CA226DEE44CB27</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>50C6CAA4D06B66C06FCBAB3F48CB14C4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>57A417D5C839A71BA33A23BBF2B83273</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>71ABE2B9B36585016003FD80E69C40F7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8115C7AED1ACAD5BDF47752F57AC31C1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8EF1A581232438D3681632F794FFF43C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9492958D80F6E30E21209399E201600D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A8FAB4675B15F8258B6C19B71077B859</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AC0D2D2B4EE7C873431AB3502859CA60</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C36CB2CB977A4E7D954935096D00A1ED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C3901B288228F352CE3CE177ECD1EBE2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D386C75EFD4F03725E4EFB866B600B9A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D52144DE9D7255DE912490FF5A806573</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E14A62900910444707A5504D25EC98DC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F4B8C70379FF442A4FEB6759B3B7F9B8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

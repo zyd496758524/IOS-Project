@@ -36,8 +36,8 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     
     //启用网络监测
-    GLobalRealReachability.hostForPing = @"www.baidu.com";
-    [GLobalRealReachability startNotifier];
+//    GLobalRealReachability.hostForPing = @"www.baidu.com";
+//    [GLobalRealReachability startNotifier];
     //创建数据库
     [XHYDBManager createDataBase];
     [XHYDBManager addField:@"msgUUID" inTable:@"XHYMsg"];

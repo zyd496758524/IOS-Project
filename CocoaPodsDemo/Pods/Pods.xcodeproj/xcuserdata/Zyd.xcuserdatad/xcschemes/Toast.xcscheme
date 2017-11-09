@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '40E4BD0ABC99F04C1850A281AF9EC471'
+               BlueprintIdentifier = '31A7DEC0D586E6BC94FADC0BF83F8069'
                BlueprintName = 'Toast'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Toast.framework'>

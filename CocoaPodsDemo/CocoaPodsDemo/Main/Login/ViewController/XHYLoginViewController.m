@@ -363,193 +363,196 @@ static const CGFloat spaceY = 25.0f;
         return;
     }
     
-    //网络监测
-    [GLobalRealReachability reachabilityWithBlock:^(ReachabilityStatus status){
-
-        switch (status){
+    if (loginTimer){
+        
+        [loginTimer invalidate];
+        loginTimer = nil;
+    }
+    
+    loginTimer = [NSTimer scheduledTimerWithTimeInterval:20.0f target:self selector:@selector(xmppLoginTimeOut:) userInfo:nil repeats:NO];
+    [loginTimer fireDate];
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
+    [SVProgressHUD setMinimumDismissTimeInterval:20.0f];
+    [SVProgressHUD setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.8f]];
+    [SVProgressHUD showImage:[[UIImage jk_animatedGIFNamed:@"loading"] jk_animatedImageByScalingAndCroppingToSize:CGSizeMake(50.0F, 50.0F)] status:NSLocalizedString(@"logining", nil)];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),^{
+        
+        /*
+         XMPP互联网登录
+         */
+        
+        NSString *jid = [NSString stringWithFormat:@"c%@",self.accountField.text];
+        NSString *pwd = self.passwordField.text;
+        
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CURRENTACCOUNT"];
+        [[NSUserDefaults standardUserDefaults] setObject:self.accountField.text forKey:@"CURRENTACCOUNT"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        XHYLoginManager *loginManager = [XHYLoginManager defaultLoginManager];
+        [loginManager connectXMPP:jid andPassword:pwd loginSuccess:^{
+            
+            [loginTimer invalidate];
+            loginTimer = nil;
+            
+            if ([SAMKeychain setPassword:self.passwordField.text forService:keychainService account:self.accountField.text]){
                 
-            case RealStatusUnknown:
-            case RealStatusNotReachable:{
-                
-                [self.view makeToast:@"当前网络状态不可用" duration:2.0f position:CSToastPositionBottom];
+                [self.accountField synchronize];
             }
-                break;
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
-            case RealStatusViaWiFi:
-            case RealStatusViaWWAN:{
+                [SVProgressHUD dismiss];
                 
-                if (loginTimer){
-                    
-                    [loginTimer invalidate];
-                    loginTimer = nil;
-                }
+                XHYRootTabBarController *rootTabBarController = [[XHYRootTabBarController alloc] init];
+                XHYCenterViewController *centerViewControlelr = [[XHYCenterViewController alloc] init];
                 
-                loginTimer = [NSTimer scheduledTimerWithTimeInterval:20.0f target:self selector:@selector(xmppLoginTimeOut:) userInfo:nil repeats:NO];
-                [loginTimer fireDate];
+                MMDrawerController *drawerController = [[MMDrawerController alloc] initWithCenterViewController:rootTabBarController leftDrawerViewController:centerViewControlelr];
+                [drawerController setShowsShadow:NO];
+                [drawerController setMaximumLeftDrawerWidth:0.8 * ScreenWidth];
+                [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar|MMOpenDrawerGestureModeBezelPanningCenterView];
+                [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+                [self.navigationController presentViewController:drawerController animated:YES completion:^{
+                    
+                }];
+            });
+            
+        } loginFailure:^(NSString *errorDescription){
+            
+            [loginTimer invalidate];
+            loginTimer = nil;
+            
+            [[XHYDataContainer defaultDataContainer] clearAllData];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
                 
-                [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
-                [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
-                [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
-                [SVProgressHUD setMinimumDismissTimeInterval:20.0f];
-                [SVProgressHUD setBackgroundColor:[[UIColor whiteColor] colorWithAlphaComponent:0.8f]];
-                [SVProgressHUD showImage:[[UIImage jk_animatedGIFNamed:@"loading"] jk_animatedImageByScalingAndCroppingToSize:CGSizeMake(50.0F, 50.0F)] status:NSLocalizedString(@"logining", nil)];
-                
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0),^{
-                    
-                    /*
-                     XMPP互联网登录
-                    */
-                    
-                    NSString *jid = [NSString stringWithFormat:@"c%@",self.accountField.text];
-                    NSString *pwd = self.passwordField.text;
-                    
-                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CURRENTACCOUNT"];
-                    [[NSUserDefaults standardUserDefaults] setObject:self.accountField.text forKey:@"CURRENTACCOUNT"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-                    
-                    XHYLoginManager *loginManager = [XHYLoginManager defaultLoginManager];
-                    [loginManager connectXMPP:jid andPassword:pwd loginSuccess:^{
-                        
-                        [loginTimer invalidate];
-                        loginTimer = nil;
-                    
-                        if ([SAMKeychain setPassword:self.passwordField.text forService:keychainService account:self.accountField.text]){
-                            
-                            [self.accountField synchronize];
-                        }
-                        
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            
-                            [SVProgressHUD dismiss];
-                            
-                            XHYRootTabBarController *rootTabBarController = [[XHYRootTabBarController alloc] init];
-                            XHYCenterViewController *centerViewControlelr = [[XHYCenterViewController alloc] init];
-                            
-                            MMDrawerController *drawerController = [[MMDrawerController alloc] initWithCenterViewController:rootTabBarController leftDrawerViewController:centerViewControlelr];
-                            [drawerController setShowsShadow:NO];
-                            [drawerController setMaximumLeftDrawerWidth:0.8 * ScreenWidth];
-                            [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar|MMOpenDrawerGestureModeBezelPanningCenterView];
-                            [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-                            [self.navigationController presentViewController:drawerController animated:YES completion:^{
-                                
-                            }];
-                        });
-                        
-                    } loginFailure:^(NSString *errorDescription){
-                        
-                        [loginTimer invalidate];
-                        loginTimer = nil;
-                        
-                        [[XHYDataContainer defaultDataContainer] clearAllData];
-                        
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            
-                            [SVProgressHUD dismiss];
-                            [self.view makeToast:errorDescription duration:2.0F position:CSToastPositionBottom];
-                        });
-                    }];
-                    
-                    /*
-                     本地局域网登录
-                    */
-                    /*
-                    XHYLoginManager *loginManager = [XHYLoginManager defaultLoginManager];
-                    [loginManager LocalAreaNetwork:self.accountField.text andPassword:self.passwordField.text LoginSuccess:^{
-                        
-                        [loginTimer invalidate];
-                        loginTimer = nil;
-                        
-                        if ([SAMKeychain setPassword:self.passwordField.text forService:keychainService account:self.accountField.text]){
-                            
-                            [self.accountField synchronize];
-                        }
-                        
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            
-                            [SVProgressHUD dismiss];
-                            
-                            XHYRootTabBarController *rootTabBarController = [[XHYRootTabBarController alloc] init];
-                            XHYCenterViewController *centerViewControlelr = [[XHYCenterViewController alloc] init];
-                            
-                            MMDrawerController *drawerController = [[MMDrawerController alloc] initWithCenterViewController:rootTabBarController leftDrawerViewController:centerViewControlelr];
-                            [drawerController setShowsShadow:NO];
-                            [drawerController setMaximumLeftDrawerWidth:0.8 * ScreenWidth];
-                            [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar|MMOpenDrawerGestureModeBezelPanningCenterView];
-                            [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-                            [self.navigationController presentViewController:drawerController animated:YES completion:^{
-                                
-                            }];
-                        });
-                        
-                    } loginFailure:^(NSString *errorDescription) {
-                        
-                        [loginTimer invalidate];
-                        loginTimer = nil;
-                        
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            
-                            [SVProgressHUD dismiss];
-                            [self.view makeToast:errorDescription duration:1.0F position:CSToastPositionCenter];
-                        });
+                [SVProgressHUD dismiss];
+                [self.view makeToast:errorDescription duration:2.0F position:CSToastPositionBottom];
+            });
+        }];
 
-                    }];
-                    */
-                    /*
-                     安眼摄像头登录
-                     */
-                    /*
-                     XHYLoginManager *loginManager = [XHYLoginManager defaultLoginManager];
-                     [loginManager loginAnYan:self.accountField.text andPassword:self.passwordField.text LoginSuccess:^{
-                     
-                         [loginTimer invalidate];
-                         loginTimer = nil;
-                         
-                         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CURRENTACCOUNT"];
-                         [[NSUserDefaults standardUserDefaults] setObject:self.accountField.text forKey:@"CURRENTACCOUNT"];
-                         [[NSUserDefaults standardUserDefaults] synchronize];
-
-                         if ([SAMKeychain setPassword:self.passwordField.text forService:keychainService account:self.accountField.text]){
-                         
-                             [self.accountField synchronize];
-                         }
-                         
-                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                             
-                             [SVProgressHUD dismiss];
-                             
-                             XHYRootTabBarController *rootTabBarController = [[XHYRootTabBarController alloc] init];
-                             XHYCenterViewController *centerViewControlelr = [[XHYCenterViewController alloc] init];
-                             
-                             MMDrawerController *drawerController = [[MMDrawerController alloc] initWithCenterViewController:rootTabBarController leftDrawerViewController:centerViewControlelr];
-                             [drawerController setShowsShadow:NO];
-                             [drawerController setMaximumLeftDrawerWidth:0.8 * ScreenWidth];
-                             [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar|MMOpenDrawerGestureModeBezelPanningCenterView];
-                             [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
-                             [self.navigationController presentViewController:drawerController animated:YES completion:^{
-                             
-                             }];
-                         });
-                     
-                     } loginFailure:^(NSString *errorDescription) {
-                     
-                         [loginTimer invalidate];
-                         loginTimer = nil;
-                         
-                         dispatch_async(dispatch_get_main_queue(), ^{
-                         
-                             [SVProgressHUD dismiss];
-                             [self.view makeToast:errorDescription duration:1.0F position:CSToastPositionCenter];
-                         });
-                     }];
-                     */
-                });
-            }
-                break;
-                
-            default:
-                break;
-        }
-    }];
+    });
+    
+//    //网络监测
+//    [GLobalRealReachability reachabilityWithBlock:^(ReachabilityStatus status){
+//
+//        switch (status){
+//                
+//            case RealStatusUnknown:
+//            case RealStatusNotReachable:{
+//                
+//                [self.view makeToast:@"当前网络状态不可用" duration:2.0f position:CSToastPositionBottom];
+//            }
+//                break;
+//                
+//            case RealStatusViaWiFi:
+//            case RealStatusViaWWAN:{
+//                
+//                
+//                    /*
+//                     本地局域网登录
+//                    */
+//                    /*
+//                    XHYLoginManager *loginManager = [XHYLoginManager defaultLoginManager];
+//                    [loginManager LocalAreaNetwork:self.accountField.text andPassword:self.passwordField.text LoginSuccess:^{
+//                        
+//                        [loginTimer invalidate];
+//                        loginTimer = nil;
+//                        
+//                        if ([SAMKeychain setPassword:self.passwordField.text forService:keychainService account:self.accountField.text]){
+//                            
+//                            [self.accountField synchronize];
+//                        }
+//                        
+//                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                            
+//                            [SVProgressHUD dismiss];
+//                            
+//                            XHYRootTabBarController *rootTabBarController = [[XHYRootTabBarController alloc] init];
+//                            XHYCenterViewController *centerViewControlelr = [[XHYCenterViewController alloc] init];
+//                            
+//                            MMDrawerController *drawerController = [[MMDrawerController alloc] initWithCenterViewController:rootTabBarController leftDrawerViewController:centerViewControlelr];
+//                            [drawerController setShowsShadow:NO];
+//                            [drawerController setMaximumLeftDrawerWidth:0.8 * ScreenWidth];
+//                            [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar|MMOpenDrawerGestureModeBezelPanningCenterView];
+//                            [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+//                            [self.navigationController presentViewController:drawerController animated:YES completion:^{
+//                                
+//                            }];
+//                        });
+//                        
+//                    } loginFailure:^(NSString *errorDescription) {
+//                        
+//                        [loginTimer invalidate];
+//                        loginTimer = nil;
+//                        
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+//                            
+//                            [SVProgressHUD dismiss];
+//                            [self.view makeToast:errorDescription duration:1.0F position:CSToastPositionCenter];
+//                        });
+//
+//                    }];
+//                    */
+//                    /*
+//                     安眼摄像头登录
+//                     */
+//                    /*
+//                     XHYLoginManager *loginManager = [XHYLoginManager defaultLoginManager];
+//                     [loginManager loginAnYan:self.accountField.text andPassword:self.passwordField.text LoginSuccess:^{
+//                     
+//                         [loginTimer invalidate];
+//                         loginTimer = nil;
+//                         
+//                         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"CURRENTACCOUNT"];
+//                         [[NSUserDefaults standardUserDefaults] setObject:self.accountField.text forKey:@"CURRENTACCOUNT"];
+//                         [[NSUserDefaults standardUserDefaults] synchronize];
+//
+//                         if ([SAMKeychain setPassword:self.passwordField.text forService:keychainService account:self.accountField.text]){
+//                         
+//                             [self.accountField synchronize];
+//                         }
+//                         
+//                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                             
+//                             [SVProgressHUD dismiss];
+//                             
+//                             XHYRootTabBarController *rootTabBarController = [[XHYRootTabBarController alloc] init];
+//                             XHYCenterViewController *centerViewControlelr = [[XHYCenterViewController alloc] init];
+//                             
+//                             MMDrawerController *drawerController = [[MMDrawerController alloc] initWithCenterViewController:rootTabBarController leftDrawerViewController:centerViewControlelr];
+//                             [drawerController setShowsShadow:NO];
+//                             [drawerController setMaximumLeftDrawerWidth:0.8 * ScreenWidth];
+//                             [drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningNavigationBar|MMOpenDrawerGestureModeBezelPanningCenterView];
+//                             [drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+//                             [self.navigationController presentViewController:drawerController animated:YES completion:^{
+//                             
+//                             }];
+//                         });
+//                     
+//                     } loginFailure:^(NSString *errorDescription) {
+//                     
+//                         [loginTimer invalidate];
+//                         loginTimer = nil;
+//                         
+//                         dispatch_async(dispatch_get_main_queue(), ^{
+//                         
+//                             [SVProgressHUD dismiss];
+//                             [self.view makeToast:errorDescription duration:1.0F position:CSToastPositionCenter];
+//                         });
+//                     }];
+//                     */
+//                
+//            }
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//    }];
 }
 
 - (void)xmppLoginTimeOut:(NSTimer *)timer{

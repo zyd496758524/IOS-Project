@@ -1,24 +1,24 @@
 PODS:
-  - Bugtags (2.2.0):
-    - Bugtags/Core (= 2.2.0)
-  - Bugtags/Core (2.2.0)
-  - CocoaAsyncSocket (7.6.0)
-  - CocoaLumberjack (3.1.0):
-    - CocoaLumberjack/Default (= 3.1.0)
-    - CocoaLumberjack/Extensions (= 3.1.0)
-  - CocoaLumberjack/Default (3.1.0)
-  - CocoaLumberjack/Extensions (3.1.0):
+  - Bugtags (2.4.0):
+    - Bugtags/Core (= 2.4.0)
+  - Bugtags/Core (2.4.0)
+  - CocoaAsyncSocket (7.6.1)
+  - CocoaLumberjack (3.3.0):
+    - CocoaLumberjack/Default (= 3.3.0)
+    - CocoaLumberjack/Extensions (= 3.3.0)
+  - CocoaLumberjack/Default (3.3.0)
+  - CocoaLumberjack/Extensions (3.3.0):
     - CocoaLumberjack/Default
   - DZNEmptyDataSet (1.8.1)
-  - FMDB (2.6.2):
-    - FMDB/standard (= 2.6.2)
-  - FMDB/standard (2.6.2)
-  - IQKeyboardManager (4.0.8)
-  - JDStatusBarNotification (1.5.5)
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - IQKeyboardManager (4.0.13)
+  - JDStatusBarNotification (1.5.6)
   - KissXML (5.2.0)
   - libidn (1.33)
   - Masonry (1.0.2)
-  - MJRefresh (3.1.12)
+  - MJRefresh (3.1.15)
   - MMDrawerController (0.6.0):
     - MMDrawerController/Core (= 0.6.0)
     - MMDrawerController/MMDrawerBarButtonItem (= 0.6.0)
@@ -31,19 +31,14 @@ PODS:
     - MMDrawerController/Core
   - MMDrawerController/Subclass (0.6.0):
     - MMDrawerController/Core
-  - PYSearch (0.7.2)
-  - RealReachability (1.1.8):
-    - RealReachability/Connection (= 1.1.8)
-    - RealReachability/Ping (= 1.1.8)
-  - RealReachability/Connection (1.1.8)
-  - RealReachability/Ping (1.1.8)
-  - SAMKeychain (1.5.2)
+  - PYSearch (0.8.6)
+  - SAMKeychain (1.5.3)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
-  - SVProgressHUD (2.1.2)
+  - SVProgressHUD (2.2.2)
   - Toast (3.1.0)
-  - XMPPFramework (3.7.0):
+  - XMPPFramework (4.0):
     - CocoaAsyncSocket (~> 7.6.0)
     - CocoaLumberjack
     - KissXML (~> 5.2.0)
@@ -59,7 +54,6 @@ DEPENDENCIES:
   - MJRefresh (~> 3.1.12)
   - MMDrawerController (~> 0.6.0)
   - PYSearch
-  - RealReachability
   - SAMKeychain (~> 1.5.2)
   - SDWebImage (~> 4.0.0)
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
@@ -75,33 +69,32 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SVProgressHUD:
-    :commit: 803bc1e473e2861f75abf06174d9c937de7a0fe0
+    :commit: bb4e4e460d4f8e2ecf20af99797f781e7cc09d8f
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
   XMPPFramework:
-    :commit: b8300e8d77ddc154e7ed9c7e08c5c2af90455c28
+    :commit: d7d51347c29a236a8466e5fea8c611df54f57a6c
     :git: https://github.com/robbiehanson/XMPPFramework.git
 
 SPEC CHECKSUMS:
-  Bugtags: a271155048edb166f20477e3988f69ac52bad051
-  CocoaAsyncSocket: b9d5589f07baf9de8f34cc25abd4fcba28f13805
-  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
+  Bugtags: 916b3dcbc4e495f96206ac35546aa196c9ed2132
+  CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
+  CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
-  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  IQKeyboardManager: 1a8189fa153bf09044355ee0ad36826f6767e7f7
-  JDStatusBarNotification: 2b4f29bd68a60d7aa2f190b5265f1ce59c18aaf8
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
+  JDStatusBarNotification: d5829a8f2f291b23b8a54b87fac8bf2549945a2f
   KissXML: 1c1eeeb6b94e4522cd2f2373e5d0d03c9227738f
   libidn: 90fc1a62b60288dcf543f13f4ebca913f17d829f
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
-  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
+  MJRefresh: 9af70f5f9327a2cf87f0fb5929f35fcc2fa638ea
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
-  PYSearch: 0e34e7326d482e659d0eca9d81d6ef5f8179e3b7
-  RealReachability: e6c8a2bbffa316006e8c282efc1ee2567d61a920
-  SAMKeychain: 1865333198217411f35327e8da61b43de79b635b
+  PYSearch: df20532006885d1c45c8f18dc41ca172e05e755a
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  SVProgressHUD: d65371a8e4482380deddb9fe60e14e59ddb30eb3
+  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
-  XMPPFramework: 544da7ab3faf7005de303708630a4e9741efb907
+  XMPPFramework: 585b26f95cf67f294881c0aba3afd67346524ba5
 
-PODFILE CHECKSUM: 121d559be032bb990800163832581f5d16057955
+PODFILE CHECKSUM: 241d53279a6a6c863affe2b8e69b74c0913a5026
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.4.0.beta.2

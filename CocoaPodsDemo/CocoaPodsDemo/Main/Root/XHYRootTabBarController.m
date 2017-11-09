@@ -69,9 +69,9 @@
                                                object:nil];
     */
     @JZWeakObj(self);
-    [self xw_addNotificationForName:kRealReachabilityChangedNotification block:^(NSNotification * _Nonnull notification){
-        [selfWeak networkChanged:notification];
-    }];
+//    [self xw_addNotificationForName:kRealReachabilityChangedNotification block:^(NSNotification * _Nonnull notification){
+//        [selfWeak networkChanged:notification];
+//    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,7 +81,7 @@
 }
 
 #pragma mark -----
-
+/*
 - (void)networkChanged:(NSNotification *)notification{
     
     RealReachability *reachability = (RealReachability *)notification.object;
@@ -117,4 +117,5 @@
             break;
     }
 }
+ */
 @end
