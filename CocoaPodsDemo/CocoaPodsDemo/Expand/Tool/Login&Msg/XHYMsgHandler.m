@@ -9,7 +9,7 @@
 #import "XHYMsgHandler.h"
 #import "XHYDeviceHelper.h"
 #import "XHYSmartDevice.h"
-#import "JDStatusBarNotification.h"
+//#import "JDStatusBarNotification.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "XHYMsg.h"
 #import "NSString+UUID.h"
@@ -573,19 +573,19 @@ static XHYMsgHandler *msgHandle = nil;
         return;
     }
     
-    [JDStatusBarNotification setDefaultStyle:^JDStatusBarStyle *(JDStatusBarStyle *style){
-        style.barColor = MainColor;
-        style.textColor = [UIColor whiteColor];
-        return style;
-    }];
-    NSBlockOperation *msgNotiOperation = [NSBlockOperation blockOperationWithBlock:^{
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [JDStatusBarNotification showWithStatus:msgContent dismissAfter:1.0f];
-        });
-    }];
-    [self.msgNotiQueue addOperation:msgNotiOperation];
+//    [JDStatusBarNotification setDefaultStyle:^JDStatusBarStyle *(JDStatusBarStyle *style){
+//        style.barColor = MainColor;
+//        style.textColor = [UIColor whiteColor];
+//        return style;
+//    }];
+//    NSBlockOperation *msgNotiOperation = [NSBlockOperation blockOperationWithBlock:^{
+//
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//
+//            [JDStatusBarNotification showWithStatus:msgContent dismissAfter:1.0f];
+//        });
+//    }];
+//    [self.msgNotiQueue addOperation:msgNotiOperation];
     [self.msgNotiQueue addOperationWithBlock:^{
         sleep(1);
     }];

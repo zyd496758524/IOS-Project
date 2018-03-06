@@ -83,6 +83,10 @@
         self.tableView.contentInset =  self.originalContentInsetWhenKeyboardHidden;
     }
     self.tableView.contentOffset = CGPointMake(0, -self.tableView.contentInset.top);
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0) { // iOS 11
+        self.tableView.contentInset = UIEdgeInsetsMake(-30, 0, 0, 0);
+    }
 }
 
 #pragma mark - Table view data source

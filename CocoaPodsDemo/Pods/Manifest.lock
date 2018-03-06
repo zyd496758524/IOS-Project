@@ -1,24 +1,23 @@
 PODS:
-  - Bugtags (2.4.0):
-    - Bugtags/Core (= 2.4.0)
-  - Bugtags/Core (2.4.0)
-  - CocoaAsyncSocket (7.6.1)
-  - CocoaLumberjack (3.3.0):
-    - CocoaLumberjack/Default (= 3.3.0)
-    - CocoaLumberjack/Extensions (= 3.3.0)
-  - CocoaLumberjack/Default (3.3.0)
-  - CocoaLumberjack/Extensions (3.3.0):
+  - Bugtags (3.0.1):
+    - Bugtags/Core (= 3.0.1)
+  - Bugtags/Core (3.0.1)
+  - CocoaAsyncSocket (7.6.2)
+  - CocoaLumberjack (3.4.1):
+    - CocoaLumberjack/Default (= 3.4.1)
+    - CocoaLumberjack/Extensions (= 3.4.1)
+  - CocoaLumberjack/Default (3.4.1)
+  - CocoaLumberjack/Extensions (3.4.1):
     - CocoaLumberjack/Default
   - DZNEmptyDataSet (1.8.1)
   - FMDB (2.7.2):
     - FMDB/standard (= 2.7.2)
   - FMDB/standard (2.7.2)
   - IQKeyboardManager (4.0.13)
-  - JDStatusBarNotification (1.5.6)
-  - KissXML (5.2.0)
+  - KissXML (5.2.2)
   - libidn (1.33)
   - Masonry (1.0.2)
-  - MJRefresh (3.1.15)
+  - MJRefresh (3.1.15.3)
   - MMDrawerController (0.6.0):
     - MMDrawerController/Core (= 0.6.0)
     - MMDrawerController/MMDrawerBarButtonItem (= 0.6.0)
@@ -31,14 +30,16 @@ PODS:
     - MMDrawerController/Core
   - MMDrawerController/Subclass (0.6.0):
     - MMDrawerController/Core
-  - PYSearch (0.8.6)
+  - PYSearch (0.8.8)
   - SAMKeychain (1.5.3)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
-  - SVProgressHUD (2.2.2)
+  - SVProgressHUD (2.2.5)
   - Toast (3.1.0)
   - XMPPFramework (4.0):
+    - XMPPFramework/default (= 4.0)
+  - XMPPFramework/default (4.0):
     - CocoaAsyncSocket (~> 7.6.0)
     - CocoaLumberjack
     - KissXML (~> 5.2.0)
@@ -49,7 +50,6 @@ DEPENDENCIES:
   - DZNEmptyDataSet (~> 1.8.1)
   - FMDB (~> 2.5)
   - IQKeyboardManager (~> 4.0.8)
-  - JDStatusBarNotification (~> 1.5.5)
   - Masonry (~> 1.0.2)
   - MJRefresh (~> 3.1.12)
   - MMDrawerController (~> 0.6.0)
@@ -69,32 +69,31 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SVProgressHUD:
-    :commit: bb4e4e460d4f8e2ecf20af99797f781e7cc09d8f
+    :commit: 61c1f02c2587831cebca094bed6f228ed8c314b0
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
   XMPPFramework:
-    :commit: d7d51347c29a236a8466e5fea8c611df54f57a6c
+    :commit: 00c1101f5e7a0f7fa9ca5f64f57105461ef8d6f4
     :git: https://github.com/robbiehanson/XMPPFramework.git
 
 SPEC CHECKSUMS:
-  Bugtags: 916b3dcbc4e495f96206ac35546aa196c9ed2132
-  CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
-  CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
+  Bugtags: 3115fa971bc3901828bb204c62cd1523173dbc97
+  CocoaAsyncSocket: 3541e024f48c54b251638ef72d51dd42808de932
+  CocoaLumberjack: 2e258a064cacc8eb9a2aca318e24d02a0a7fd56d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
   IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
-  JDStatusBarNotification: d5829a8f2f291b23b8a54b87fac8bf2549945a2f
-  KissXML: 1c1eeeb6b94e4522cd2f2373e5d0d03c9227738f
+  KissXML: 4418f32138aec43797891845d682b00fc8cd4677
   libidn: 90fc1a62b60288dcf543f13f4ebca913f17d829f
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
-  MJRefresh: 9af70f5f9327a2cf87f0fb5929f35fcc2fa638ea
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
   MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
-  PYSearch: df20532006885d1c45c8f18dc41ca172e05e755a
+  PYSearch: aa3704f283c67667808de6df514c24df03f5f116
   SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
-  SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
-  XMPPFramework: 585b26f95cf67f294881c0aba3afd67346524ba5
+  XMPPFramework: 967df10e4dc4ba4ca5e04505fd2b2d2fd562d917
 
-PODFILE CHECKSUM: 241d53279a6a6c863affe2b8e69b74c0913a5026
+PODFILE CHECKSUM: 0d6085879ae4fe3d8a7d35d41a52c109027206c6
 
 COCOAPODS: 1.4.0.beta.2

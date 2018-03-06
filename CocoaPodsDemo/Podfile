@@ -14,7 +14,7 @@ target 'CocoaPodsDemo' do
     pod 'DZNEmptyDataSet','~> 1.8.1'
     pod 'Toast','~> 3.1.0'
 #    pod 'RealReachability'
-    pod 'JDStatusBarNotification','~> 1.5.5'
+#    pod 'JDStatusBarNotification'
     pod 'IQKeyboardManager','~> 4.0.8'
     pod 'Bugtags'
     pod 'PYSearch'

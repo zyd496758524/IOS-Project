@@ -89,6 +89,11 @@
  */
 @property (nonatomic, assign) UIDeviceOrientation currentOrientation;
 
+/**
+ The width of cancel button
+ */
+@property (nonatomic, assign) CGFloat cancelButtonWidth;
+
 @end
 
 @implementation PYSearchViewController
@@ -119,27 +124,27 @@
     }
     
     UIButton *cancelButton = self.navigationItem.rightBarButtonItem.customView;
-    CGFloat buttonWidth = cancelButton.py_width;
-    CGFloat buttonHeight = cancelButton.py_height;
-    [cancelButton sizeToFit];
-    if (buttonWidth >= cancelButton.py_width) {
-        cancelButton.py_width = buttonWidth;
-        cancelButton.py_width += 5;
-    }
-    if (buttonHeight >= cancelButton.py_height) {
-        cancelButton.py_height = buttonHeight;
-    }
+    self.cancelButtonWidth = cancelButton.py_width > self.cancelButtonWidth ? cancelButton.py_width : self.cancelButtonWidth;
     // Adapt the search bar layout problem in the navigation bar on iOS 11
     // More details : https://github.com/iphone5solo/PYSearch/issues/108
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 11.0) { // iOS 11
-        _searchBar.py_width = self.view.py_width - cancelButton.py_width - PYSEARCH_MARGIN * 3 - 8;
+        UINavigationBar *navBar = self.navigationController.navigationBar;
+        navBar.layoutMargins = UIEdgeInsetsZero;
+        CGFloat space = 8;
+        for (UIView *subview in navBar.subviews) {
+            if ([NSStringFromClass(subview.class) containsString:@"ContentView"]) {
+                subview.layoutMargins = UIEdgeInsetsMake(0, space, 0, space); // Fix cancel button width is modified
+                break;
+            }
+        }
+        _searchBar.py_width = self.view.py_width - self.cancelButtonWidth - PYSEARCH_MARGIN * 3 - 8;
         _searchBar.py_height = self.view.py_width > self.view.py_height ? 24 : 30;
         _searchTextField.frame = _searchBar.bounds;
     } else {
         UIView *titleView = self.navigationItem.titleView;
         titleView.py_x = PYSEARCH_MARGIN * 1.5;
         titleView.py_y = self.view.py_width > self.view.py_height ? 3 : 7;
-        titleView.py_width = self.view.py_width - cancelButton.py_width - titleView.py_x * 2 - 3;
+        titleView.py_width = self.view.py_width - self.cancelButtonWidth - titleView.py_x * 2 - 3;
         titleView.py_height = self.view.py_width > self.view.py_height ? 24 : 30;
     }
 }
@@ -159,6 +164,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if (self.cancelButtonWidth == 0) { // Just adapt iOS 11.2
+        [self viewDidLayoutSubviews];
+    }
     
     // Adjust the view according to the `navigationBar.translucent`
     if (NO == self.navigationController.navigationBar.translucent) {
@@ -346,6 +355,7 @@
     [cancleButton setTitle:[NSBundle py_localizedStringForKey:PYSearchCancelButtonText] forState:UIControlStateNormal];
     [cancleButton addTarget:self action:@selector(cancelDidClick)  forControlEvents:UIControlEventTouchUpInside];
     [cancleButton sizeToFit];
+    cancleButton.py_width += PYSEARCH_MARGIN;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancleButton];
     /**
      * Initialize settings
