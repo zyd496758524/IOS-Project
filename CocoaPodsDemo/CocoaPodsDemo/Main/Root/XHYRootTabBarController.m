@@ -20,7 +20,6 @@
 
 #import "AppDelegate.h"
 #import "UIViewController+MMDrawerController.h"
-//#import "JDStatusBarNotification.h"
 
 @interface XHYRootTabBarController ()
 

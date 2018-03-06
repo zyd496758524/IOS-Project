@@ -11,7 +11,6 @@
 #import "XMPP.h"
 #import "XMPPReconnect.h"
 
-
 #import "XHYDataContainer.h"
 #import "XHYSmartDevice.h"
 #import "XHYMsgHandler.h"
